@@ -25,7 +25,7 @@ eval("\n\n//# sourceURL=webpack://TicTacToe/./src/game.js?");
   \**********************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("const View = __webpack_require__(/*! ./ttt-view */ \"./src/ttt-view.js\")\nconst Game = __webpack_require__(/*! ./game */ \"./src/game.js\")\n\ndocument.addEventListener(\"DOMContentLoaded\", () => {\n  \n  function View() {\n    this.game = new Game()\n    this.el = document.querySelector(\".ttt\")\n    this.setupBoard()\n  }\n  \n\n\n  function Game(){\n\n  }\n\n\n});\n\nwindow.View = View;\n\n\n//# sourceURL=webpack://TicTacToe/./src/index.js?");
+eval("const View = __webpack_require__(/*! ./ttt-view */ \"./src/ttt-view.js\")\nconst Game = __webpack_require__(/*! ./game */ \"./src/game.js\")\n\ndocument.addEventListener(\"DOMContentLoaded\", () => {\n  \n  let view1 = new View({\n    game: new Game(),\n    el: document.querySelector(\".ttt\")\n  });\n\n  function Game(){\n  }\n\n});\n\nwindow.View = View;\n\n\n//# sourceURL=webpack://TicTacToe/./src/index.js?");
 
 /***/ }),
 
@@ -33,9 +33,9 @@ eval("const View = __webpack_require__(/*! ./ttt-view */ \"./src/ttt-view.js\")\
 /*!*************************!*\
   !*** ./src/ttt-view.js ***!
   \*************************/
-/***/ (() => {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("throw new Error(\"Module parse failed: Identifier 'View' has already been declared (16:9)\\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\\n| }\\n| \\n> function View() {\\n|   this.game = new Game()\\n|   this.el = document.querySelector(\\\".ttt\\\")\");\n\n//# sourceURL=webpack://TicTacToe/./src/ttt-view.js?");
+eval("const Index = __webpack_require__(/*! ./index */ \"./src/index.js\");\n\nlet MOVE_NUM = 0;\n\nclass View {\n  constructor(options) {\n    this.game = options.game;\n    this.el = options.el;\n    this.setupBoard();\n  }\n\n  setupBoard() {\n    let ul = document.createElement(\"ul\");\n    ul.style.display = \"flex\";\n    ul.style.width = \"600px\";\n    ul.style.height = \"600px\";\n    ul.style.flexWrap = \"wrap\";\n    ul.style.margin = \"0 auto\";\n    ul.style.paddingLeft = \"20px\";\n    ul.style.listStyleType = \"none\";\n\n    for (let i = 0; i < 9; i++) {\n      let li = document.createElement(\"li\");\n      li.style.display = \"inline-block\";\n      li.style.width = \"180px\";\n      li.style.height = \"180px\";\n      li.style.marginRight = \"20px\";\n      li.style.backgroundColor = \"red\";\n      li.style.display = \"flex\";\n      li.style.justifyContent = \"center\";\n      li.style.alignItems = \"center\";\n      \n\n      li.setAttribute(\"data-index-number\", i);\n\n      li.addEventListener(\"mouseover\", (e) => {\n        e.target.style.backgroundColor = \"blue\";\n      });\n\n      li.addEventListener(\"mouseout\", (e) => {\n        e.target.style.backgroundColor = \"red\";\n      });\n\n      li.addEventListener(\"click\", (e) => this.handleClick(e));\n\n      ul.appendChild(li);\n    };\n\n    this.el.appendChild(ul);\n  }\n  \n  bindEvents() {}\n\n  handleClick(e) {\n    if(MOVE_NUM % 2 === 0){\n      e.target.innerHTML = \"<img style='width: 150px; height: 150px;' src='https://images.theconversation.com/files/129851/original/image-20160708-24096-1mslcn7.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop'></img>\";\n    }else{\n      e.target.innerHTML = \"<img style='width: 150px; height: 150px;' src='https://m.media-amazon.com/images/I/81t1BZc5CNL._AC_UL1500_.jpg'></img>\";\n    }\n    MOVE_NUM++;\n  }\n\n  makeMove(square) {}\n\n}\n\nmodule.exports = View;\n\n\n//# sourceURL=webpack://TicTacToe/./src/ttt-view.js?");
 
 /***/ })
 
@@ -69,7 +69,7 @@ eval("throw new Error(\"Module parse failed: Identifier 'View' has already been 
 /******/ 	
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
-/******/ 	// This entry module can't be inlined because the eval devtool is used.
+/******/ 	// This entry module is referenced by other modules so it can't be inlined
 /******/ 	var __webpack_exports__ = __webpack_require__("./src/index.js");
 /******/ 	
 /******/ })()

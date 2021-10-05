@@ -3,18 +3,13 @@ const Game = require("./game")
 
 document.addEventListener("DOMContentLoaded", () => {
   
-  function View() {
-    this.game = new Game()
-    this.el = document.querySelector(".ttt")
-    this.setupBoard()
-  }
-  
-
+  let view1 = new View({
+    game: new Game(),
+    el: document.querySelector(".ttt")
+  });
 
   function Game(){
-
   }
-
 
 });
 
